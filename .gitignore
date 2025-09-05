@@ -1,0 +1,25 @@
+# Node modules (dependencies)
+node_modules/
+
+# Build output (can be regenerated)
+dist/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Local environment variables
+.env
+.env.local
+.env.*.local
+
+# Editor/IDE specific
+.vscode/
+.idea/
+.DS_Store
+
+# Optional: OS generated files
+Thumbs.db
+.env 
