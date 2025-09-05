@@ -5,12 +5,6 @@ It combines **chat-like conversations** with a **folder-based file system**, mak
 
 ---
 
-## 🚀 Live Demo  
-👉 [Click here to try Notiva](https://your-deployment-link.com)  
-*(Replace with your GitHub Pages, Netlify, or Vercel deployment link once you publish)*  
-
----
-
 ## ✨ Features
 - 📂 **Organize Files into Folders** (A, B, C or create new ones).  
 - 💬 **Chat-based Interaction** – share files, react with emojis, reply instantly.  
@@ -28,15 +22,20 @@ It combines **chat-like conversations** with a **folder-based file system**, mak
 
 ---
 
-## 📸 Screenshots
+## 🚀 Live Demo
+👉 [Click here to view Notiva](https://luna-x23.github.io/Notiva/)
+
+---
+
+## 📸 Screenshots  
 🔹 **Contacts Page**  
-<img width="1344" height="614" alt="Contacts" src="https://github.com/user-attachments/assets/918d4991-d780-48ef-878a-6c54c467c240" />  
+<img width="1344" height="614" alt="contacts" src="https://github.com/user-attachments/assets/918d4991-d780-48ef-878a-6c54c467c240" />  
 
 🔹 **Chat Page**  
-<img width="1364" height="641" alt="Chat" src="https://github.com/user-attachments/assets/0d5d42ff-dffe-4818-bdd3-12f060a6c357" />  
+<img width="1364" height="641" alt="chat" src="https://github.com/user-attachments/assets/0d5d42ff-dffe-4818-bdd3-12f060a6c357" />  
 
 🔹 **Folder View**  
-<img width="1361" height="624" alt="Folders" src="https://github.com/user-attachments/assets/6afe8ec4-a159-412f-a3c7-f83f51fd7e5f" />  
+<img width="1361" height="624" alt="folders" src="https://github.com/user-attachments/assets/6afe8ec4-a159-412f-a3c7-f83f51fd7e5f" />  
 
 ---
 
@@ -50,35 +49,45 @@ It combines **chat-like conversations** with a **folder-based file system**, mak
 
 ## 📂 Folder Structure  
 
-```plaintext
 Notiva/
-├── frontend/             # React frontend
-│   ├── public/           # Static assets
-│   ├── src/              # Source code
-│   │   ├── App.jsx       # Main App component
-│   │   ├── Chat.jsx      # Chat page
-│   │   ├── Contacts.jsx  # Contacts page
-│   │   ├── FolderView.jsx # Folder management
-│   │   ├── firebase.js   # Firebase setup
-│   │   ├── styles.css    # Global styles
-│   │   ├── utils.js      # Helpers (localStorage, seed data)
-│   │   ├── data.js       # Sample default data
-│   ├── index.html        # Root HTML
-│   └── vite.config.js    # Vite config
+│── frontend/ # React frontend
+│ ├── public/ # Static assets
+│ ├── src/ # Source code
+│ │ ├── App.jsx # Main App component
+│ │ ├── Chat.jsx # Chat page
+│ │ ├── Contacts.jsx # Contacts page
+│ │ ├── FolderView.jsx # Folder management
+│ │ ├── firebase.js # Firebase setup (move keys to .env for safety)
+│ │ ├── styles.css # Global styles
+│ │ ├── utils.js # Helpers (localStorage, seed data)
+│ │ ├── data.js # Sample default data
+│ ├── index.html # Root HTML
+│ ├── vite.config.js # Vite config
 │
-└── README.md             # Project documentation
-⚡ Installation & Setup
-Prerequisites
-Make sure you have Node.js (v16+) and npm installed.
-👉 Download Node.js here
+├── .gitignore # Ignore node_modules, dist, .env etc.
+├── package.json # Dependencies & scripts
+├── package-lock.json # Lock file
+└── README.md # Project documentation
 
-Setup
-Clone the repository
-
-bash
+yaml
 Copy code
-git clone https://github.com/luna-x23/Notiva.git
-cd Notiva/frontend
+
+---
+
+## ⚡ Installation & Setup  
+
+### Prerequisites  
+Make sure you have **Node.js** (v16+) and **npm** installed.  
+👉 [Download Node.js here](https://nodejs.org/)  
+
+---
+
+### Setup  
+
+1. **Clone the repository**  
+   ```bash
+   git clone https://github.com/luna-x23/Notiva.git
+   cd Notiva/frontend
 Install dependencies
 
 bash
@@ -89,9 +98,21 @@ Run locally
 bash
 Copy code
 npm run dev
-The app will start at:
+App will start at:
 👉 http://localhost:5173/
 
-📜 License
-This project is licensed under the MIT License – feel free to use and modify it.
+Deployment (GitHub Pages)
+Build the project
+
+bash
+Copy code
+npm run build
+Deploy to GitHub Pages
+
+bash
+Copy code
+npm run deploy
+Your app will be live at:
+👉 https://<your-username>.github.io/Notiva/
+
 
