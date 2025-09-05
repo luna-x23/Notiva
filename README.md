@@ -69,8 +69,6 @@ Notiva/
 ├── package-lock.json         # Lock file  
 └── README.md                 # Project documentation  
 
-yaml
-Copy code
 
 ---
 
