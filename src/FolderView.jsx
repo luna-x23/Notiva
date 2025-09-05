@@ -2,21 +2,31 @@ import React, { useMemo, useState } from 'react'
 import { load, save } from './utils.js'
 
 export default function FolderView({ onBack }) {
-  const [folderSearch, setFolderSearch] = useState('')   // 🔹 For "Search files (all folders)"
-  const [fileSearch, setFileSearch] = useState('')       // 🔹 For "Search in folder"
+  // 🔹 Two separate states
+  const [folderSearch, setFolderSearch] = useState('')   // global search (all folders)
+  const [fileSearch, setFileSearch] = useState('')       // search inside active folder
+
   const [active, setActive] = useState('A')
-  const [folders, setFolders] = useState(load('notiva_folders', { A: [], B: [], C: [] }))
+  const [folders, setFolders] = useState(
+    load('notiva_folders', { A: [], B: [], C: [] })
+  )
   const names = Object.keys(folders)
 
+  // 🔹 Filter files inside the active folder
   const files = useMemo(() => {
     const arr = folders[active] || []
-    return arr.filter(f => (f.name || '').toLowerCase().includes(fileSearch.toLowerCase()))
+    return arr.filter(f =>
+      (f.name || '').toLowerCase().includes(fileSearch.toLowerCase())
+    )
   }, [fileSearch, active, folders])
 
   function renameFolder(oldName) {
     const name = prompt('Rename folder to:', oldName)
     if (!name || name === oldName) return
-    if (folders[name]) { alert('Folder name already exists'); return }
+    if (folders[name]) {
+      alert('Folder name already exists')
+      return
+    }
     const nf = { ...folders }
     nf[name] = nf[oldName]
     delete nf[oldName]
@@ -43,11 +53,11 @@ export default function FolderView({ onBack }) {
         <div className="title">Folders</div>
       </div>
 
-      {/* 🔹 Global search */}
+      {/* 🔹 Global folder search */}
       <div className="searchWrap">
         <input
           className="searchInput"
-          placeholder="Search files (all folders)…"
+          placeholder="Search folders…"
           value={folderSearch}
           onChange={e => setFolderSearch(e.target.value)}
         />
@@ -56,14 +66,21 @@ export default function FolderView({ onBack }) {
       {/* 🔹 Filtered folder list */}
       <div className="folderList">
         {names
-          .filter(name => name.toLowerCase().includes(folderSearch.toLowerCase())) // filter with folderSearch
+          .filter(name =>
+            name.toLowerCase().includes(folderSearch.toLowerCase())
+          )
           .map(name => (
             <div
               key={name}
               className="folderCard"
-              onClick={() => setActive(name)}
-              onContextMenu={(e) => contextHandler(e, name)}
-              style={{ outline: active === name ? '2px solid var(--accent)' : 'none' }}
+              onClick={() => {
+                setActive(name)
+                setFileSearch('') // reset file search when switching folders
+              }}
+              onContextMenu={e => contextHandler(e, name)}
+              style={{
+                outline: active === name ? '2px solid var(--accent)' : 'none'
+              }}
               title="Right-click to rename"
             >
               <div style={{ fontSize: 18, marginBottom: 6 }}>📁 {name}</div>
@@ -74,7 +91,9 @@ export default function FolderView({ onBack }) {
 
       {/* 🔹 File search inside active folder */}
       <div className="card">
-        <div className="title" style={{ marginBottom: 10 }}>Folder {active}</div>
+        <div className="title" style={{ marginBottom: 10 }}>
+          Folder {active}
+        </div>
         <input
           className="searchInput"
           placeholder={`Search in folder ${active}…`}
@@ -83,14 +102,29 @@ export default function FolderView({ onBack }) {
         />
       </div>
 
+      {/* 🔹 File list */}
       <div className="files">
         {files.map((f, i) => (
           <div key={i} className="fileItem">
-            📄 <a href={f.url} target="_blank" rel="noreferrer" style={{ marginLeft: 8 }}>{f.name}</a>
-            <div className="meta">from: {f.from || 'unknown'} · {f.mime || 'file'}</div>
+            📄{' '}
+            <a
+              href={f.url}
+              target="_blank"
+              rel="noreferrer"
+              style={{ marginLeft: 8 }}
+            >
+              {f.name}
+            </a>
+            <div className="meta">
+              from: {f.from || 'unknown'} · {f.mime || 'file'}
+            </div>
           </div>
         ))}
-        {files.length === 0 && <div className="meta" style={{ margin: '14px 18px' }}>No files in this folder yet.</div>}
+        {files.length === 0 && (
+          <div className="meta" style={{ margin: '14px 18px' }}>
+            No files in this folder yet.
+          </div>
+        )}
       </div>
     </div>
   )
