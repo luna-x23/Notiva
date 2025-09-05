@@ -1,4 +1,3 @@
-// src/firebase.js
 import { initializeApp } from "firebase/app";
 import { 
   getAuth, 
@@ -9,14 +8,15 @@ import {
 import { getFirestore } from "firebase/firestore";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
+// ✅ Use environment variables instead of hardcoding
 const firebaseConfig = {
-  apiKey: "AIzaSyBh8oqqHVidZ_c9NP3d_DCbjG3mAOs6TLU",
-  authDomain: "notiva-402e0.firebaseapp.com",
-  projectId: "notiva-402e0",
-  storageBucket: "notiva-402e0.appspot.com",
-  messagingSenderId: "47387378523",
-  appId: "1:47387378523:web:efa0204185d8d2cbbe107e",
-  measurementId: "G-55RRNZB3FF"
+  apiKey: import.meta.env.VITE_API_KEY,
+  authDomain: import.meta.env.VITE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_APP_ID,
+  measurementId: import.meta.env.VITE_MEASUREMENT_ID,
 };
 
 // Initialize Firebase
@@ -60,4 +60,5 @@ export const uploadFileSmart = async (file, folder = "uploads") => {
     return null;
   }
 };
+
 
