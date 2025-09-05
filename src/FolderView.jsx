@@ -2,13 +2,12 @@ import React, { useMemo, useState } from 'react'
 import { load, save } from './utils.js'
 
 export default function FolderView({ onBack }) {
-  const [folderSearch, setFolderSearch] = useState('')
-  const [fileSearch, setFileSearch] = useState('')
+  const [folderSearch, setFolderSearch] = useState('')   // 🔹 For "Search files (all folders)"
+  const [fileSearch, setFileSearch] = useState('')       // 🔹 For "Search in folder"
   const [active, setActive] = useState('A')
   const [folders, setFolders] = useState(load('notiva_folders', { A: [], B: [], C: [] }))
   const names = Object.keys(folders)
 
-  // Filter files inside the active folder
   const files = useMemo(() => {
     const arr = folders[active] || []
     return arr.filter(f => (f.name || '').toLowerCase().includes(fileSearch.toLowerCase()))
@@ -44,19 +43,20 @@ export default function FolderView({ onBack }) {
         <div className="title">Folders</div>
       </div>
 
-      {/* 🔹 Global folder search */}
+      {/* 🔹 Global search */}
       <div className="searchWrap">
         <input
           className="searchInput"
-          placeholder="Search folders…"
+          placeholder="Search files (all folders)…"
           value={folderSearch}
           onChange={e => setFolderSearch(e.target.value)}
         />
       </div>
 
+      {/* 🔹 Filtered folder list */}
       <div className="folderList">
         {names
-          .filter(name => name.toLowerCase().includes(folderSearch.toLowerCase()))
+          .filter(name => name.toLowerCase().includes(folderSearch.toLowerCase())) // filter with folderSearch
           .map(name => (
             <div
               key={name}
@@ -72,10 +72,9 @@ export default function FolderView({ onBack }) {
           ))}
       </div>
 
+      {/* 🔹 File search inside active folder */}
       <div className="card">
         <div className="title" style={{ marginBottom: 10 }}>Folder {active}</div>
-        
-        {/* 🔹 File search (inside folder) */}
         <input
           className="searchInput"
           placeholder={`Search in folder ${active}…`}
