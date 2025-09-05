@@ -49,25 +49,25 @@ It combines **chat-like conversations** with a **folder-based file system**, mak
 
 ## 📂 Folder Structure  
 
-Notiva/
-│── frontend/ # React frontend
-│ ├── public/ # Static assets
-│ ├── src/ # Source code
-│ │ ├── App.jsx # Main App component
-│ │ ├── Chat.jsx # Chat page
-│ │ ├── Contacts.jsx # Contacts page
-│ │ ├── FolderView.jsx # Folder management
-│ │ ├── firebase.js # Firebase setup (move keys to .env for safety)
-│ │ ├── styles.css # Global styles
-│ │ ├── utils.js # Helpers (localStorage, seed data)
-│ │ ├── data.js # Sample default data
-│ ├── index.html # Root HTML
-│ ├── vite.config.js # Vite config
-│
-├── .gitignore # Ignore node_modules, dist, .env etc.
-├── package.json # Dependencies & scripts
-├── package-lock.json # Lock file
-└── README.md # Project documentation
+Notiva/  
+├── frontend/                 # React frontend  
+│   ├── public/               # Static assets  
+│   ├── src/                  # Source code  
+│   │   ├── App.jsx           # Main App component  
+│   │   ├── Chat.jsx          # Chat page  
+│   │   ├── Contacts.jsx      # Contacts page  
+│   │   ├── FolderView.jsx    # Folder management  
+│   │   ├── firebase.js       # Firebase setup (move keys to .env for safety)  
+│   │   ├── styles.css        # Global styles  
+│   │   ├── utils.js          # Helpers (localStorage, seed data)  
+│   │   ├── data.js           # Sample default data  
+│   ├── index.html            # Root HTML  
+│   ├── vite.config.js        # Vite config  
+│  
+├── .gitignore                # Ignore node_modules, dist, .env etc.  
+├── package.json              # Dependencies & scripts  
+├── package-lock.json         # Lock file  
+└── README.md                 # Project documentation  
 
 yaml
 Copy code
@@ -112,7 +112,11 @@ Deploy to GitHub Pages
 bash
 Copy code
 npm run deploy
-Your app will be live at:
-👉 https://<your-username>.github.io/Notiva/
+##  Live Demo
+
+🔗 **Visit Notiva live:**  
+- Text URL: `https://luna-x23.github.io/Notiva/`  
+- Clickable Link: [https://luna-x23.github.io/Notiva/](https://luna-x23.github.io/Notiva/)
+
 
 
